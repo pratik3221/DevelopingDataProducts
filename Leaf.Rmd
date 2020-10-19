@@ -1,0 +1,43 @@
+---
+title: "DDPW2"
+author: "Pratik Patil"
+date: "19/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Create a Leaflet Map Object
+```{r cars}
+library(leaflet)
+map <- leaflet()
+```
+
+#Create a marker with a picture of Benrath Palace and a link to its homepage.
+```{r echo=FALSE}
+benrathPalaceIcon <- makeIcon(
+   iconUrl = "http://www.schloss-benrath.de/fileadmin/_processed_/csm_corps-de-logis-blumen_2e04b2b859.jpg",
+   iconWidth = 30*408/255, iconHeight = 30,
+   iconAnchorX = 30*408/255/2, iconAnchorY = 30/2
+)
+```
+
+Add the marker to the map and display the map.
+```{r}
+cst <- c("<a href='https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Terminus'>CST<br><img
+         src='https://gumlet.assettype.com/freepressjournal%2Fimport%2F2017%2F06%2Fmumbai-cst.jpg?w=750&dpr=1.0' width='500' height='110'></a>")
+gwi <- c("<a href= 'https://en.wikipedia.org/wiki/Gateway_of_India'>Gateway of India<br><img src='https://cdn.s3waas.gov.in/s311b921ef080f7736089c757404650e40/uploads/bfi_thumb/2018032370-olw6tnoutvo02yrqn2j7ad0m8pri1ix6igoogo6y1s.jpg' width='300' height='120'></a>")
+sgnp <- c("<a href='https://sgnp.maharashtra.gov.in/Site/Home/Index.aspx'>Sanjay Gandhi National Park<br><img
+          src='https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2020/05/11/SGNP-1589201691.jpg?itok=u3DrguzX' width='210' height='132'></a>")
+t2<-c("<a href='https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_International_Airport'> CSM Airport T 2<br><img src='https://content3.jdmagicbox.com/comp/mumbai/20/022p1089020/catalogue/chhatrapati-shivaji-domestic-airport-vile-parle-east-mumbai-domestic-airport-duu40.jpg?clr=660000' width='500' height='110'></a>")
+t1<-c("<a href='https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Maharaj_International_Airport'>CSM Airport T1<br><img src='https://www.airlinequality.com/wp-content/uploads/2014/08/14359192_10154039314539385_2642128094892733246_n.jpg' width='210' height='90'></a>")
+map %>%
+  addTiles() %>%
+   addMarkers(lat=18.9410,lng=72.8331,popup = cst) %>%
+   addMarkers(lat=18.9219841, lng=72.8346543, popup =gwi) %>%
+   addMarkers(lat=19.2288,lng =72.9182 ,popup = sgnp) %>%
+   addMarkers(lat=19.0931,lng = 72.8586,popup = t2) %>%
+   addMarkers(lat=19.0896,lng=72.8656,popup = t1)
+```
