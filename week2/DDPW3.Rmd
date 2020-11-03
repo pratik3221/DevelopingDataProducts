@@ -1,0 +1,30 @@
+---
+title: "Plot"
+author: "Pratik Patil"
+date: "03/11/2020"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Engine Fuel Efficiency Plots
+
+We try and understand the relationship between various factors and fuel used per mile using the `mtcars` data.
+
+X axis vs. Y axis: weight of car(`wt`) versus mileage(`mpg`)
+Colour of a plot point: Visualization of number of cylinders(`cyl`)
+Size of a plot point: horsepower of the car(`hp`)
+
+## Visualizing the Data
+
+```{r plot, echo=FALSE}
+suppressPackageStartupMessages(library(plotly))
+plot_ly(data = mtcars, x = ~wt, y = ~mpg, 
+        color = ~as.factor(cyl), size = ~hp,
+        text = ~paste("Weight: ", wt, '<br>MPG:', mpg),
+        type = "scatter", mode = "markers") %>%
+  layout(title = "Car Data")
+```
